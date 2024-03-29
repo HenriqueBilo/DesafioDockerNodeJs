@@ -22,7 +22,7 @@ connection.query(sqlDelete, (error, results) => {
 var nomeCount = 0;
 
 app.get('/', (req, res) => {
-    const sql = `INSERT INTO people(name) values ('Nome${nomeCount++}')`;
+    const sql = `INSERT INTO people(nome) values ('Nome${nomeCount++}')`;
     connection.query(sql, (error, results) => {
       if (error) {
         console.error('Erro ao inserir registro na tabela `people`:', error);
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
     connection.query('SELECT * FROM people', (error, results) => {
         if (error) throw error;
-        res.send(`<h1>Full Cycle Rocks!</h1><ul>${results.map(result => `<li>${result.name}</li>`).join('')}</ul>`);
+        res.send(`<h1>Full Cycle Rocks!</h1><ul>${results.map(result => `<li>${result.nome}</li>`).join('')}</ul>`);
     });
 });
 
